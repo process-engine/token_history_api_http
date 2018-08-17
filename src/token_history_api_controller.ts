@@ -26,15 +26,15 @@ export class TokenHistoryApiController {
     return this._tokenHistoryApiService;
   }
 
-  public async getTokensForFlowNodeInstance(request: Request, response: Response): Promise<void> {
+  public async getTokensForFlowNode(request: Request, response: Response): Promise<void> {
     const correlationId: string = request.params.correlation_id;
     const processModelId: string = request.params.process_model_id;
-    const flowNodeInstanceId: string = request.params.flow_node_instance_id;
+    const flowNodeId: string = request.params.flow_node_id;
 
     const identity: IIdentity = await this._resolveIdentity(request);
 
     const result: Array<TokenHistoryEntry> =
-      await this.tokenHistoryApiService.getTokensForFlowNodeInstance(identity, correlationId, processModelId, flowNodeInstanceId);
+      await this.tokenHistoryApiService.getTokensForFlowNode(identity, correlationId, processModelId, flowNodeId);
 
     response.status(this.httpCodeSuccessfulResponse).json(result);
   }

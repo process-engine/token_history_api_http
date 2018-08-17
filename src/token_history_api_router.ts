@@ -29,6 +29,6 @@ export class LoggingApiRouter extends BaseRouter {
   private registerRoutes(): void {
     const controller: TokenHistoryApiController = this.tokenHistoryApiRestController;
 
-    this.router.get(restSettings.paths.getTokensForFlowNodeInstance, wrap(controller.getTokensForFlowNodeInstance.bind(controller)));
+    this.router.get(restSettings.paths.getTokensForFlowNode, wrap(controller.getTokensForFlowNode.bind(controller)));
   }
 }
