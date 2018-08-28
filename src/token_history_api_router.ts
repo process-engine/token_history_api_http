@@ -5,7 +5,7 @@ import {wrap} from 'async-middleware';
 
 import {TokenHistoryApiController} from './token_history_api_controller';
 
-export class LoggingApiRouter extends BaseRouter {
+export class TokenHistoryApiRouter extends BaseRouter {
 
   private _tokenHistoryApiRestController: TokenHistoryApiController;
 
