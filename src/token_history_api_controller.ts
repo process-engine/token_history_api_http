@@ -1,4 +1,4 @@
-import {ITokenHistoryApiService, TokenHistoryEntry} from '@process-engine/token_history_api_contracts';
+import {ITokenHistoryApi, TokenHistoryEntry} from '@process-engine/token_history_api_contracts';
 
 import {UnauthorizedError} from '@essential-projects/errors_ts';
 import {IIdentity, IIdentityService} from '@essential-projects/iam_contracts';
@@ -11,9 +11,9 @@ export class TokenHistoryApiController {
   private httpCodeSuccessfulResponse: number = 200;
 
   private _identityService: IIdentityService;
-  private _tokenHistoryApiService: ITokenHistoryApiService;
+  private _tokenHistoryApiService: ITokenHistoryApi;
 
-  constructor(identityService: IIdentityService, tokenHistoryApiService: ITokenHistoryApiService) {
+  constructor(identityService: IIdentityService, tokenHistoryApiService: ITokenHistoryApi) {
     this._identityService = identityService;
     this._tokenHistoryApiService = tokenHistoryApiService;
   }
@@ -22,7 +22,7 @@ export class TokenHistoryApiController {
     return this._identityService;
   }
 
-  private get tokenHistoryApiService(): ITokenHistoryApiService {
+  private get tokenHistoryApiService(): ITokenHistoryApi {
     return this._tokenHistoryApiService;
   }
 
