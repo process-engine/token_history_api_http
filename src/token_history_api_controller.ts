@@ -39,6 +39,18 @@ export class TokenHistoryApiController {
     response.status(this.httpCodeSuccessfulResponse).json(result);
   }
 
+  public async getTokensForCorrelationAndProcessModel(request: Request, response: Response): Promise<void> {
+    const correlationId: string = request.params.correlation_id;
+    const processModelId: string = request.params.process_model_id;
+
+    const identity: IIdentity = await this._resolveIdentity(request);
+
+    const result: Array<Array<TokenHistoryEntry>> =
+      await this.tokenHistoryApiService.getTokensForCorrelationAndProcessModel(identity, correlationId, processModelId);
+
+    response.status(this.httpCodeSuccessfulResponse).json(result);
+  }
+
   private async _resolveIdentity(request: Request): Promise<IIdentity> {
     const bearerToken: string = request.get('authorization');
 
