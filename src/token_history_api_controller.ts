@@ -1,4 +1,4 @@
-import {ITokenHistoryApi, TokenHistoryEntry} from '@process-engine/token_history_api_contracts';
+import {ITokenHistoryApi, TokenHistoryEntry, TokenHistoryGroup} from '@process-engine/token_history_api_contracts';
 
 import {UnauthorizedError} from '@essential-projects/errors_ts';
 import {IIdentity, IIdentityService} from '@essential-projects/iam_contracts';
@@ -45,7 +45,7 @@ export class TokenHistoryApiController {
 
     const identity: IIdentity = await this._resolveIdentity(request);
 
-    const result: Array<Array<TokenHistoryEntry>> =
+    const result: TokenHistoryGroup =
       await this.tokenHistoryApiService.getTokensForCorrelationAndProcessModel(identity, correlationId, processModelId);
 
     response.status(this.httpCodeSuccessfulResponse).json(result);
