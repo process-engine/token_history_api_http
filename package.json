@@ -23,7 +23,7 @@
     "@essential-projects/errors_ts": "~1.4.0",
     "@essential-projects/http_node": "~4.1.0",
     "@essential-projects/iam_contracts": "~3.2.0",
-    "@process-engine/token_history_api_contracts": "feature~improve_getting-token-for-correlation-and-processmodel",
+    "@process-engine/token_history_api_contracts": "~1.2.0",
     "async-middleware": "1.2.1",
     "loggerhythm": "3.0.3"
   },
