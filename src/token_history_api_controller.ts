@@ -51,6 +51,17 @@ export class TokenHistoryApiController {
     response.status(this.httpCodeSuccessfulResponse).json(result);
   }
 
+  public async getTokensForProcessInstance(request: Request, response: Response): Promise<void> {
+    const processInstanceId: string = request.params.process_instance_id;
+
+    const identity: IIdentity = await this._resolveIdentity(request);
+
+    const result: TokenHistoryGroup =
+      await this.tokenHistoryApiService.getTokensForProcessInstance(identity, processInstanceId);
+
+    response.status(this.httpCodeSuccessfulResponse).json(result);
+  }
+
   private async _resolveIdentity(request: Request): Promise<IIdentity> {
     const bearerToken: string = request.get('authorization');
 
