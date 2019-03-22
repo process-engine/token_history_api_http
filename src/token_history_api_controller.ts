@@ -40,7 +40,7 @@ export class TokenHistoryApiController {
   }
 
   public async getTokensForFlowNodeByProcessInstanceId(request: Request, response: Response): Promise<void> {
-    const processInstanceId: string = request.params.processInstanceId;
+    const processInstanceId: string = request.params.process_instance_id;
     const flowNodeId: string = request.params.flow_node_id;
 
     const identity: IIdentity = await this._resolveIdentity(request);
