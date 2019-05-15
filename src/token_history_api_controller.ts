@@ -45,7 +45,7 @@ export class TokenHistoryApiController {
 
     const identity: IIdentity = await this._resolveIdentity(request);
 
-    const result: Array<TokenHistoryEntry> =
+    const result: TokenHistoryGroup =
       await this.tokenHistoryApiService.getTokensForFlowNodeByProcessInstanceId(identity, processInstanceId, flowNodeId);
 
     response.status(this.httpCodeSuccessfulResponse).json(result);
