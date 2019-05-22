@@ -7,15 +7,11 @@ import {TokenHistoryApiController} from './token_history_api_controller';
 
 export class TokenHistoryApiRouter extends BaseRouter {
 
-  private _tokenHistoryApiRestController: TokenHistoryApiController;
+  private tokenHistoryApiRestController: TokenHistoryApiController;
 
   constructor(tokenHistoryApiRestController: TokenHistoryApiController) {
     super();
-    this._tokenHistoryApiRestController = tokenHistoryApiRestController;
-  }
-
-  private get tokenHistoryApiRestController(): TokenHistoryApiController {
-    return this._tokenHistoryApiRestController;
+    this.tokenHistoryApiRestController = tokenHistoryApiRestController;
   }
 
   public get baseRoute(): string {
@@ -27,8 +23,22 @@ export class TokenHistoryApiRouter extends BaseRouter {
   }
 
   private registerRoutes(): void {
-    const controller: TokenHistoryApiController = this.tokenHistoryApiRestController;
-
-    this.router.get(restSettings.paths.getTokensForFlowNode, wrap(controller.getTokensForFlowNode.bind(controller)));
+    this.router.get(
+      restSettings.paths.getTokensForCorrelationAndProcessModel,
+      wrap(this.tokenHistoryApiRestController.getTokensForCorrelationAndProcessModel.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
+      restSettings.paths.getTokensForFlowNode,
+      wrap(this.tokenHistoryApiRestController.getTokensForFlowNode.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
+      restSettings.paths.getTokensForFlowNodeByProcessInstanceId,
+      wrap(this.tokenHistoryApiRestController.getTokensForFlowNodeByProcessInstanceId.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
+      restSettings.paths.getTokensForProcessInstance,
+      wrap(this.tokenHistoryApiRestController.getTokensForProcessInstance.bind(this.tokenHistoryApiRestController)),
+    );
   }
+
 }
