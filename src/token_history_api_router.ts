@@ -24,8 +24,20 @@ export class TokenHistoryApiRouter extends BaseRouter {
 
   private registerRoutes(): void {
     this.router.get(
+      restSettings.paths.getTokensForCorrelationAndProcessModel,
+      wrap(this.tokenHistoryApiRestController.getTokensForCorrelationAndProcessModel.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
       restSettings.paths.getTokensForFlowNode,
       wrap(this.tokenHistoryApiRestController.getTokensForFlowNode.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
+      restSettings.paths.getTokensForFlowNodeByProcessInstanceId,
+      wrap(this.tokenHistoryApiRestController.getTokensForFlowNodeByProcessInstanceId.bind(this.tokenHistoryApiRestController)),
+    );
+    this.router.get(
+      restSettings.paths.getTokensForProcessInstance,
+      wrap(this.tokenHistoryApiRestController.getTokensForProcessInstance.bind(this.tokenHistoryApiRestController)),
     );
   }
 
